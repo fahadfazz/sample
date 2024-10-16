@@ -1,0 +1,36 @@
+import random
+
+# Function to run the guessing game
+def guess_number():
+    print("Welcome to the Number Guessing Game!")
+    
+    # Set the range of numbers
+    lower_bound = int(input("Enter the lower bound of the range: "))
+    upper_bound = int(input("Enter the upper bound of the range: "))
+    
+    # Generate a random number between the specified bounds
+    secret_number = random.randint(lower_bound, upper_bound)
+    
+    attempts = 0
+    while True:
+        try:
+            # Get the player's guess
+            guess = int(input(f"Guess a number between {lower_bound} and {upper_bound}: "))
+            attempts += 1
+            
+            # Check if the guess is correct, too low, or too high
+            if guess < lower_bound or guess > upper_bound:
+                print(f"Please enter a number within the range {lower_bound} to {upper_bound}.")
+            elif guess < secret_number:
+                print("Too low! Try again.")
+            elif guess > secret_number:
+                print("Too high! Try again.")
+            else:
+                print(f"Congratulations! You guessed the correct number {secret_number} in {attempts} attempts.")
+                break
+        except ValueError:
+            print("Please enter a valid number.")
+
+# Main program
+if __name__ == "__main__":
+    guess_number()
